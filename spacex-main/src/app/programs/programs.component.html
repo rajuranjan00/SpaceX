@@ -1,0 +1,49 @@
+<div class="header">SpaceX Launch Programs</div>
+<div class="row">
+    <div class="col-2 sidebar">
+        <div class="filters">Filters</div>
+        <div class="container">
+            <div class="row">
+              <div class="col launch">Launch Year</div>
+              <div class="w-100"></div>
+              <div class="col alink" *ngFor="let c of categories$.LaunchYear">
+                <a  class="link" routerLink="/" [queryParams]="{launch_year: c}"  queryParamsHandling= "merge">{{c}}</a>
+                  </div>
+            <div class="w-100"></div>
+            <div class="col launch">Successful Launch</div>
+            <div class="w-100"></div>
+            <div class="col alink" *ngFor="let l of categories$.SuccessfulLaunch;">
+                <a class="link"routerLink="/" [queryParams]="{launch_success:l}" queryParamsHandling= "merge">{{l}}</a>
+            </div>
+          <div class="w-100"></div>
+          <div class="col launch">Successful Landing</div>
+          <div class="w-100"></div>
+            <div class="col alink" *ngFor="let s of categories$.SuccessfulLanding"> 
+                <a class="link"routerLink="/" [queryParams]="{land_success: s}" queryParamsHandling= "merge">{{s}}</a>
+            </div>
+          <div class="w-100"></div>
+
+        </div>
+        </div>
+    </div>
+    <div class="col-10 sidebar">
+        <div class="row">
+            <ng-container *ngFor="let p of program;let i = index">
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img [src]="p.links.mission_patch" class="card-img-top">
+                        <div class="card-body">
+                          <h5 class="card-title">{{p.mission_name}} #{{p.flight_number}}</h5>
+                          <p class="card-text">Mission Ids: <br><ul class="index">{{p.mission_id}}</ul></p>
+                          <p class="card-text">Launch Year:<span class="insideText">{{p.launch_year}}</span></p>
+                          <p class="card-text">Successful Launch:<span class="insideText">{{p.launch_success}}</span></p>
+                          <p class="card-text">Successful Landing: <span class="insideText">{{p.rocket.first_stage.cores[0].land_success}}</span></p>
+                       </div>
+                      </div>
+                </div>
+                <div *ngIf="(i+1)%4===0" class="w-100"></div>
+            </ng-container>
+        </div>
+    </div>
+</div>
+<footer class="footer"> Developed By: Raju Ranjan Yadav</footer>
